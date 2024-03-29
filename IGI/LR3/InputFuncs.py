@@ -9,7 +9,7 @@ Date: 22.03.2024
 A file of input functions.
 """
 
-from Generators import GenerateIntList, GenerateFloatList
+from Generators import GenerateIntList
 from Checkers import CheckIntNum, CheckFloatNum
 from Data import task4DefaultString
 

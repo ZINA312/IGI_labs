@@ -20,7 +20,7 @@ def CheckFloatNum(num : str) -> bool:
     try:
         num = float(num)
         return True
-    except TypeError:
+    except (ValueError, TypeError):
         return False
     
 def CheckIntNum(num : str) -> bool:
@@ -34,5 +34,5 @@ def CheckIntNum(num : str) -> bool:
     try:
         num = int(num)
         return True
-    except TypeError:
+    except (ValueError, TypeError):
         return False

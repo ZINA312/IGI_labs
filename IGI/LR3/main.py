@@ -41,6 +41,8 @@ def main():
             case '0':
                 os.system('cls')
                 break
+            case _:
+                print('Нет такого пункта!')
 
 if __name__ == '__main__':
     main()
