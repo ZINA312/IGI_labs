@@ -1,283 +1,269 @@
-----main.py---- 
+----main.py ----
+main() - starts the program, provides a menu, and is responsible for starting the rest of the tasks
+Args:
+None
+Returns:
+None
 
-main() -    запускает программу, предоставляет меню, отвечает за запуск остальных заданий
-            Args:
-                None
-            Returns:
-                None
+----Task1.py ----
+RunTask1() - Performs Task 1: Calculate ln(x+1) and output the results. Asks the user for the value of 'x' and the desired precision of 'eps' to calculate the natural logarithm (x+1). It then calls the NaturalLog function to perform calculations and outputs the results.
 
-----Task1.py----
+Args:
+None
+Returns:
+None
 
-RunTask1() - Выполняет Задание 1: Вычисление ln(x+1) и вывод результатов.
+NaturalLog() - Calculates the natural logarithm (x+1).
+Calculates the natural logarithm (x+1) with a given precision of 'eps'. It uses the Taylor series to approximate the value of the logarithm.
 
-            Запрашивает у пользователя значение 'x' и желаемую точность 'eps' для вычисления натурального логарифма (x+1). Затем она вызывает функцию NaturalLog для выполнения вычислений и выводит результаты.
-
-            Args:
-                None
-            Returns:
-                None
-
-NaturalLog() - Вычисляет натуральный логарифм (x+1).
-
-            Вычисляет натуральный логарифм (x+1) с заданной точностью 'eps'. Она использует ряд Тейлора для приближенного вычисления значения логарифма.
-
-            Args:
-                x (float): Значение 'x', для которого нужно вычислить натуральный логарифм.
-                eps (float): Требуемая точность для вычисления.
-            Returns:
-                dict: Словарь с результатами вычислений, включающий следующие ключи:
-                    - 'x': Значение 'x', переданное в функцию.
-                    - 'n': Количество итераций, выполненных для достижения заданной точности.
-                    - 'F(x)': Приближенное значение натурального логарифма (x+1).
-                    - 'Math F(x)': Точное значение натурального логарифма (x+1), вычисленное с помощью функции math.log(1 + x).
-                    - 'eps': Заданная точность 'eps'.
+Args:
+x (float): The value of 'x' to calculate the natural logarithm for.
+eps (float): The required accuracy for calculation.
+Returns:
+dict: A dictionary with the results of calculations, including the following keys:
+- 'x': The value of 'x' passed to the function.
+- 'n': The number of iterations performed to achieve the specified accuracy.
+- 'F(x)': Approximate value of the natural logarithm (x+1).
+- 'Math F(x)': The exact value of the natural logarithm (x+1) calculated using the math.log(1 + x) function.
+- 'eps': The specified accuracy of 'eps'.
 
 
 ----Task2.py----
 
-RunTask2() - Запускает Задание 2: подсчет количества натуральных чисел в списке.
+RunTask2() - Starts Task 2: counting the number of natural numbers in the list.
+Organizes a loop that accepts integers from the user or generates a sequence of numbers. Then it counts the number of natural numbers in the list and outputs the results.
 
-            Организует цикл, который принимает целые числа от пользователя или генерирует последовательность чисел. Затем подсчитывает количество натуральных чисел в списке и выводит результаты.
-
-            Args:
-                None
-            Returns:
-                None
+Args:
+None
+Returns:
+None
 
 @CheckIntList
-CountNaturalNum(list) - Подсчитывает количество натуральных чисел в списке.
+CountNaturalNum(list) - Counts the number of natural numbers in the list.
+Accepts a list of integers and counts the number of natural numbers in the list. She uses the `CheckIntList` decorator to check that the list contains only integers.
 
-            Принимает список целых чисел и подсчитывает количество натуральных чисел в списке. Она использует декоратор `CheckIntList` для проверки, что список содержит только целые числа.
+Args:
+lst (list): A list of integers.
+Returns:
+int: The number of natural numbers in the list.
 
-            Args:
-                lst (list): Список целых чисел.
-            Returns:
-                int: Количество натуральных чисел в списке.
+CheckNaturalNum() - Checks whether the number is natural.
+Accepts an integer and checks whether it is natural (greater than zero).
 
-CheckNaturalNum() - Проверяет, является ли число натуральным.
-
-            Принимает целое число и проверяет, является ли оно натуральным (больше нуля).
-
-            Args:
-                num (int): Целое число для проверки.
-            Returns:
-                int: 1, если число является натуральным, иначе 0.
+Args:
+num (int): An integer to check.
+Returns:
+int: 1 if the number is natural, otherwise 0.
 
 ----Task3.py----
 
-RunTask3() - Запускает Задание 3: проверка, является ли введенная строка восьмеричным числом.
+RunTask3() - Starts Task 3: checking whether the entered string is an octal number.
+Prompts the user to enter a string and checks whether the entered string is an octal number. Then it outputs the corresponding result.
 
-            Запрашивает у пользователя ввод строки и проверяет, является ли введенная строка восьмеричным числом. Затем выводит соответствующий результат.
+Args:
+None
+Returns:
+None
 
-            Args:
-                None
-            Returns:
-                None
+IsOctalNum(str) - Checks whether the string is an octal number.
+Accepts a string and checks if it is an octal number. It tries to convert the string to a base 8 number and then compares the result with the original string. If the result of the conversion of the original string matches the original string, then True is returned, otherwise False is returned.
 
-IsOctalNum(str) - Проверяет, является ли строка восьмеричным числом.
-
-            Принимает строку и проверяет, является ли она восьмеричным числом. Она пытается преобразовать строку в число с основанием 8 и затем сравнивает результат с исходной строкой. Если результат преобразования исходной строки совпадает с исходной строкой, то возвращается True, в противном случае возвращается False.
-
-            Args:
-                string (str): Входная строка для проверки.
-            Returns:
-                bool: True, если строка является восьмеричным числом, иначе False.
+Args:
+string (str): The input string to check.
+Returns:
+bool: True if the string is an octal number, otherwise False.
 
 ----Task4.py----
 
-RunTask4() - Запускает Задание 4: обработка строки.
+RunTask4() - Starts Task 4: String processing.
+Prompts the user to choose to enter a string (manually or using the default string) and performs three subtasks:
+- a) determining the number of words in a line and displaying all words with an odd number of letters on the screen;
+- b) search for the shortest word that starts with the letter "i";
+- c) output of repeated words.
 
-            Запрашивает у пользователя выбор ввода строки (вручную или использование строки по умолчанию) и выполняет три подзадачи:
-                - а) определение количества слов в строке и вывод на экран всех слов, количество букв у которых нечетное;
-                - б) поиск самого короткого слова, которое начинается на букву "i";
-                - в) вывод повторяющихся слов.
+Args:
+None
+Returns:
+None
 
-            Args:
-                None
-            Returns:
-                None
+CountOddLengthWords(str) - Determines the number of words in a string and displays all words with an odd number of letters.
 
-CountOddLengthWords(str) - Определяет количество слов в строке и выводит на экран все слова, количество букв у которых нечетное.
+Args:
+string (str): Input string.
+Returns:
+None
 
-            Args:
-                string (str): Входная строка.
-            Returns:
-                None
+FindShortestWordStartsWithI(str) - Finds the shortest word that starts with the letter "i" in the string and displays it on the screen.
 
-FindShortestWordStartsWithI(str) - Находит самое короткое слово, которое начинается на букву "i" в строке и выводит его на экран.
+Args:
+string (str): Input string.
+Returns:
+None
 
-            Args:
-                string (str): Входная строка.
-            Returns:
-                None
+FindDuplicateWords(str) - Displays repeated words in a line.
 
-FindDuplicateWords(str) - Выводит на экран повторяющиеся слова в строке.
-
-            Args:
-                string (str): Входная строка.
-            Returns:
-                None
+Args:
+string (str): Input string.
+Returns:
+None
 
 ----Task5.py----
 
-RunTask5() - Запускает Задание 5: обработка списка.
+RunTask5() - Starts Task 5: List processing.
+Prompts the user to choose to enter a list (manually or generate a list) and performs two subtasks:
+- Find the sum of the list items with odd numbers.
+- Find the sum of the list items located between the first and last negative elements.
 
-            Запрашивает у пользователя выбор ввода списка (вручную или сгенерировать список) и выполняет две подзадачи:
-                - Найти сумму элементов списка с нечетными номерами.
-                - Найти сумму элементов списка, расположенных между первым и последним отрицательными элементами.
+Args:
+None
+Returns:
+None
 
-            Args:
-                None
-            Returns:
-                None
+SumOfOddElements(list) - Calculates the sum of the list items with odd numbers.
 
-SumOfOddElements(list) - Вычисляет сумму элементов списка с нечетными номерами.
+Args:
+lst (list): The input list.
+Returns:
+float: The sum of the elements with odd numbers.
 
-            Args:
-                lst (list): Входной список.
-            Returns:
-                float: Сумма элементов с нечетными номерами.
+SumOfElemsBetweenNegatives(list) - Calculates the sum of the list items located between the first and last negative elements.
 
-SumOfElemsBetweenNegatives(list) - Вычисляет сумму элементов списка, расположенных между первым и последним отрицательными элементами.
-
-            Args:
-                lst (list): Входной список.
-            Returns:
-                float: Сумма элементов между первым и последним отрицательными элементами.
+Args:
+lst (list): The input list.
+Returns:
+float: The sum of the elements between the first and last negative elements.
 
 ----Generators.py----
 
-GenerateIntList(int, int, int) - Генерирует целое число.
+GenerateIntList(int, int, int) - Generates an integer.
 
-            Args:
-                fromNum (int): Начальное значение диапазона (включительно).
-                toNum (int): Конечное значение диапазона (включительно).
-                count (int): Количество элементов в списке.
-            Returns:
-                int: Рандомное целое число.
+Args:
+fromNum (int): The initial value of the range (inclusive).
+toNum (int): The final value of the range (inclusive).
+count (int): The number of items in the list.
+Returns:
+int: A random integer.
 
-GenerateFloatList(int, int, int) - Генерирует вещественное число.
+GenerateFloatList(int, int, int) - Generates a real number.
 
-            Args:
-                fromNum (float): Начальное значение диапазона (включительно).
-                toNum (float): Конечное значение диапазона (включительно).
-                count (int): Количество элементов в списке.
-            Returns:
-                float: Рандомное вещественное число.
+Args:
+fromNum (float): The initial value of the range (inclusive).
+toNum (float): The final value of the range (inclusive).
+count (int): The number of items in the list.
+Returns:
+float: A random real number.
 
 ----Checkers.py----
 
-CheckFloatNum(str) - Проверяет, является ли входное значение вещественным числом.
+CheckFloatNum(str) - Checks whether the input value is a real number.
 
-            Args:
-                num (str): Входное значение.
-            Returns:
-                bool: True, если входное значение является вещественным числом, иначе False.
+Args:
+num (str): Input value.
+Returns:
+bool: True if the input value is a real number, otherwise False.
 
-CheckIntNum(str) - Проверяет, является ли входное значение целым числом.
+CheckIntNum(str) - Checks whether the input value is an integer.
 
-            Args:
-                num (str): Входное значение.
-            Returns:
-                bool: True, если входное значение является целым числом, иначе False.
+Args:
+num (str): Input value.
+Returns:
+bool: True if the input value is an integer, otherwise False.
 
 ----InputFuncs.py----
 
-XInputTask1() - Функция для ввода значения x для задачи 1.
+XInputTask1() is a function for entering the value of x for task 1.
+Requests the value of x, checks it, and returns it for task 1.
 
-            Запрашивает значение x, проверяет его и возвращает для задачи 1. 
+Args:
+None
+Returns:
+float: The entered value of x.
 
-            Args:
-                None
-            Returns:
-                float: Введенное значение x.
+EPSInputTask1() is a function for entering the eps value for task 1.
+Requests the eps value, checks it, and returns it for task 1.
 
-EPSInputTask1() - Функция для ввода значения eps для задачи 1.
+Args:
+None
+Returns:
+float: The entered eps value.
 
-            Запрашивает значение eps, проверяет его и возвращает для задачи 1.
+ManualInputTask2() is a function for manually entering a list of integers for task 2.
 
-            Args:
-                None
-            Returns:
-                float: Введенное значение eps.
+Requests integers and checks them. When you enter 0, it completes the loop and returns a list of numbers.
 
-ManualInputTask2() - Функция для ручного ввода списка целых чисел для задачи 2.
+Args:
+None
+Returns:
+list: A list of integers.
 
-            Запрашивает целые числа и проверяет их. При вводе 0 завершает цикл и возвращает список чисел.
-            
-            Args:
-                None
-            Returns:
-                list: Список целых чисел.
+GenerativeInputTask2() is a function for generating a random list of integers for task 2.
 
-GenerativeInputTask2() - Функция для генерации случайного списка целых чисел для задачи 2.
+Uses the generator from the module "Generators.py ".
 
-            Использует генератор из модуля "Generators.py".
-            
-            Args:
-                None
-            Returns:
-                list: Список целых чисел.
+Args:
+None
+Returns:
+list: A list of integers.
 
-StringInputTask3() - Функция для ввода строки для задачи 3.
+StringInputTask3() is a function for entering a string for task 3.
 
-            Запрашивает строку на ввод.
+Requests a string to be entered.
 
-            Args:
-                None
-            Returns:
-                str: Введенная строка.
-        
-ManualInputTask4() - Функция для ввода строки для задачи 4.
+Args:
+None
+Returns:
+str: The entered string.
 
-            Запрашивает строку на ввод.
+ManualInputTask4() is a function for entering a line for task 4.
 
-            Args:
-                None
-            Returns:
-                str: Введенная строка.
-    
-DefaultInputTask4() - Функция для получения значения строки по умолчанию для задачи 4.
-            
-            Возвращает строку по умолчанию из модуля "Data.py"
-            
-            Args:
-                None
-            Returns:
-                str: Значение строки по умолчанию.
-            
-LengthInputTask5() - Функция для ввода количества элементов списка для задачи 5.
+Requests a string to be entered.
 
-            Запрашивает целове число и проверяет его.
+Args:
+None
+Returns:
+str: The entered string.
 
-            Args:
-                None         
-            Returns:
-                int: Введенное количество элементов списка.
+DefaultInputTask4() is a function to get the default string value for task 4.
 
-ListInputTask5(int) - Функция для ручного ввода элементов списка для задачи 5.
+Returns the default string from the module "Data.py "
 
-            Запрашивает вещественные элементы и проверяет их.
+Args:
+None
+Returns:
+str: The default string value.
 
-            Args:
-                length (int): Количество элементов списка.
-            Returns:
-                list: Список вещественных чисел.
+LengthInputTask5() is a function for entering the number of list items for task 5.
+
+Requests an integer and checks it.
+
+Args:
+None
+Returns:
+int: The entered number of list items.
+
+ListInputTask5(int) is a function for manually entering list items for task 5.
+
+Requests real elements and verifies them.
+
+Args:
+length (int): The number of items in the list.
+Returns:
+list: A list of real numbers.
 
 ----Decorators.py----
 
-Декоратор CheckIntList(func) содержит:
-    wrapper(arr) - Проверяет, является ли аргумент функции списком целых чисел.
+The CheckIntList decorator(func) contains:
+wrapper(arr) - Checks whether the function argument is a list of integers.
 
-                Args:
-                    arr (list): Список элементов.
-                Returns:
-                    Результат выполнения исходной функции.
-                Raises:
-                    ValueError: Если аргумент не является списком целых чисел.
+Args:
+arr (list): A list of items.
+Returns:
+The result of executing the original function.
+Raises:
+ValueError: If the argument is not a list of integers.
 
 ----Data.py----
 
-    Содержит данные 
+Contains data
 
-    task4DefaultString - строка по умолчанию для задачи 4.
+task4DefaultString is the default string for task 4.

@@ -8,10 +8,20 @@ Date: 22.03.2024
 
 Requests a string and determines the number of words in which the number of letters is odd, the shortest word for the letter i, repeated words
 """
-
 from InputFuncs import DefaultInputTask4, ManualInputTask4
 
 def RunTask4() -> None:
+    '''
+    Starts Task 4: String processing.
+    Prompts the user to choose to enter a string (manually or using the default string) and performs three subtasks:
+        - a) determining the number of words in a line and displaying all words with an odd number of letters on the screen;
+        - b) search for the shortest word that starts with the letter "i";
+        - c) output of repeated words.
+        Args:
+            None
+        Returns:
+            None
+    '''
     string = str()
     print('------------------------------')
     print('а) определить количество слов в строке и вывести на экран все слова, количество букв у которых нечетное;')
@@ -35,6 +45,13 @@ def RunTask4() -> None:
     FindDuplicateWords(string)
 
 def CountOddLengthWords(string) -> None:
+    '''
+    Determines the number of words in a string and displays all words with an odd number of letters.
+        Args:
+            string (str): Input string.
+        Returns:
+            None
+    '''
     words = string.split()
     oddLengthWords = []
     for word in words:
@@ -44,6 +61,13 @@ def CountOddLengthWords(string) -> None:
     print(f'Слова с нечетным количеством букв: {", ".join(oddLengthWords)}')
 
 def FindShortestWordStartsWithI(string) -> None:
+    '''
+    Finds the shortest word that starts with the letter "i" in the string and displays it on the screen.
+        Args:
+            string (str): Input string.
+        Returns:
+            None
+    '''
     words = string.split() 
     shortestWord = None
     for word in words:
@@ -56,6 +80,13 @@ def FindShortestWordStartsWithI(string) -> None:
         print(f'Самое короткое слово на i: {shortestWord}')
 
 def FindDuplicateWords(string) -> None:
+    '''
+    Displays repeated words in a line.
+        Args:
+            string (str): Input string.
+        Returns:
+            None
+    '''
     words = string.split()
     uniqueWords = set()
     duplicateWords = set()

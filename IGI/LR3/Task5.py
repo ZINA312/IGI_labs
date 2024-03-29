@@ -13,6 +13,16 @@ from InputFuncs import LengthInputTask5, ListInputTask5
 from Generators import GenerateFloatList
 
 def RunTask5():
+    '''
+    Starts Task 5: List processing.
+    Prompts the user to choose to enter a list (manually or generate a list) and performs two subtasks:
+        - Find the sum of the list items with odd numbers.
+        - Find the sum of the list items located between the first and last negative elements.
+        Args:
+            None
+        Returns:
+            None
+    '''
     print('----Найти сумму элементов списка с нечетными номерами и сумму элементов списка, расположенных между первым и последним отрицательными элементами----')
     while True:
         menu = input("1. Ввод вручную\n2. Сгенерировать список\nВвод: ")
@@ -33,6 +43,13 @@ def RunTask5():
     print(f'Сумма элементов между первым и последним отрицательными элементами: {SumOfElemsBetweenNegatives(mainList)}')
 
 def SumOfOddElements(lst : list) -> float:
+    '''
+    Calculates the sum of the list items with odd numbers.
+        Args:
+            lst (list): The input list.
+        Returns:
+            float: The sum of the elements with odd numbers.
+    '''
     oddSum = 0
     for i in range(len(lst)):
         if i % 2 != 0:  # Проверяем нечетность индекса
@@ -40,6 +57,13 @@ def SumOfOddElements(lst : list) -> float:
     return oddSum
 
 def SumOfElemsBetweenNegatives(lst : list) -> float:
+    '''
+    Calculates the sum of the list items located between the first and last negative elements.
+        Args:
+            lst (list): The input list.
+        Returns:
+            float: The sum of the elements between the first and last negative elements.
+    '''
     firstNegIndex = -1
     lastNegIndex = -1
     for i in range(len(lst)):

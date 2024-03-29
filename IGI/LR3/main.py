@@ -13,6 +13,13 @@ import Task1, Task2, Task3, Task4, Task5
 import os
 
 def main():
+    '''
+    starts the program, provides a menu, and is responsible for starting the rest of the tasks
+        Args:
+            None
+        Returns:
+            None
+    '''
     while True:
         menu = input('Меню:\n1. Задание 1\n2. Задание 2\n3. Задание 3\n4. Задание 4\n5. Задание 5\n0. Выход\nВвод: ')
         match menu:
