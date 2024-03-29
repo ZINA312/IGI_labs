@@ -77,7 +77,7 @@ def GenerativeInputTask2() -> list:
         Returns:
             list: A list of integers.
     '''
-    return list(GenerateIntList(-10, 10, 20))
+    return list(GenerateIntList(-10, 10, LengthInputTask5()))
 
 def StringInputTask3() -> str:
     '''
