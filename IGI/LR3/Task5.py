@@ -52,7 +52,7 @@ def SumOfOddElements(lst : list) -> float:
     '''
     oddSum = 0
     for i in range(len(lst)):
-        if i % 2 != 0:  # Проверяем нечетность индекса
+        if i % 2 != 0:
             oddSum += lst[i]
     return oddSum
 

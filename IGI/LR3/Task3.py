@@ -41,5 +41,5 @@ def IsOctalNum(string : str) -> bool:
         value = int(string, 8)
         if oct(value)[2:] == string:
             return True
-    except: pass
-    return False
+    except: return False
+    

@@ -21,6 +21,8 @@ def main():
             None
     '''
     while True:
+        a = (1,6 - 1,3) * 2
+        print(a)
         menu = input('Меню:\n1. Задание 1\n2. Задание 2\n3. Задание 3\n4. Задание 4\n5. Задание 5\n0. Выход\nВвод: ')
         match menu:
             case '1':
