@@ -1,10 +1,9 @@
 import os
 from Task1.Task1 import Task1
-from Task5.Task5 import Task5
 from Task2.Task2 import Task2
 from Task3.Task3 import Task3
 from Task4.Task4 import Task4
-
+from Task5.Task5 import Task5
 
 def show_menu():
     print("===== Tasks menu =====")

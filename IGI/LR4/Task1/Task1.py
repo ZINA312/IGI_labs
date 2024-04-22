@@ -15,7 +15,7 @@ def print_export_summary(products, target_product):
     total_export_quantity = 0
     for product in products:
         if product.name == target_product:
-            export_countries.append(product.country)
+            export_countries.add(product.country)
             total_export_quantity += int(product.quantity)
     print(f"Export countries for {target_product}: {', '.join(export_countries)}")
     print(f"Total export quantity for {target_product}: {total_export_quantity}")
