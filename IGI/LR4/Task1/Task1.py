@@ -1,3 +1,12 @@
+"""
+Program: Task 1
+Lab Work: 4th Lab Work
+Title: Working with Files, Classes, Serializers, Regular Expressions, and Standard Libraries
+Version: 1
+Developer: Kudosh Alexey
+Date: 06.05.2024
+"""
+
 from .Product import Product
 from .Products import Products
 from .CSVFuncs import *
@@ -12,6 +21,9 @@ productsList = [
     ]
 
 def show_menu():
+    """
+    Displays the menu options for the program.
+    """
     print("===== Product Export Program =====")
     print("1. Save products to CSV")
     print("2. Save products to pickle")
@@ -25,6 +37,9 @@ def show_menu():
     print("----------------------------------")
 
 def Task1():
+    """
+    Main function that handles user input and performs actions based on the chosen menu option.
+    """
     products = Products(productsList)
     while True:
         show_menu()

@@ -1,0 +1,7 @@
+sentences: 7
+narrative_sentences: 6
+interrogative_sentences: 2
+imperative_sentences: 1
+average_sentence_length: 22
+average_word_length: 3
+smileys: 2
