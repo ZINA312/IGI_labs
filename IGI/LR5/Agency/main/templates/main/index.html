@@ -1,0 +1,43 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <h2>Добавить недвижимость</h2>
+        <form method="POST" action="{% url 'add_property' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ property_form.as_p }}
+            <button type="submit">Добавить</button>
+        </form>
+    {% endif %}
+    <div>
+        <form method="get" action="">
+            <label for="sort_price">Сортировать по цене:</label>
+            <select name="sort_price" id="sort_price">
+                <option value="">Без сортировки</option>
+                <option value="asc" {% if sort_price == 'asc' %}selected{% endif %}>По возрастанию</option>
+                <option value="desc" {% if sort_price == 'desc' %}selected{% endif %}>По убыванию</option>
+            </select>
+            <label for="sort_category">Сортировать по категории:</label>
+            <select name="sort_category" id="sort_category">
+                <option value="">Без сортировки</option>
+                {% for category in categories %}
+                <option value="{{ category.name }}" {% if sort_category == category.name %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Применить</button>
+        </form>
+        {% for property in properties %}
+        <div>
+            <img src="{{ property.image.url }}" alt="{{ property.title }}" height="200" width="200">
+            <h3>{{ property.title }}</h3>
+            <p>{{ property.description }}</p>
+            <p>Цена: {{ property.price }}</p>
+            <a href="{% url 'property_detail' property.id %}">Подробнее</a>
+        </div>
+        {% empty %}
+        <p>Нет доступных недвижимостей.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

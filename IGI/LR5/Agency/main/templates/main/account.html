@@ -1,0 +1,43 @@
+{% extends 'main/layout.html' %}
+
+
+{% block content %}
+<div class="med-container">
+    <div class="med-item">
+        <div>
+            <p>Имя пользователя: {{ user.user.username }}</p>
+            <p>Почта: {{ user.user.email }}</p>
+            <p>Номер телефона: {{ user.phone_number }}</p>
+            <p>Тайм зона пользователя: {{ time_zone }}</p>
+            
+            {% if request.COOKIES.admin == "True" %}
+                <p>Роль пользователя: Админ</p>
+            {% elif request.COOKIES.role == "True" %}
+                <p>Роль пользователя: Сотрудник</p>
+            {% else %}
+                <p>Роль пользователя: Обычный пользователь</p>
+            {% endif %}
+            
+            <div>
+                <form action="/changeinfo/" method="get">
+                    {% csrf_token %}
+                    <button style="width: 220px; height: 30px;" type="submit">Изменить личную информацию</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    
+    {% if user.my_sales.all %}
+        <div class="med-item">
+            <h2>Сделки пользователя:</h2>
+            <ul>
+                {% for sale in user.my_sales.all %}
+                    <li>{{ sale.property }} - {{ sale.employee }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+

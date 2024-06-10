@@ -1,0 +1,12 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Добавить контакт{% endblock %}
+
+{% block content %}
+    <h2>Добавить контакт</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock %}

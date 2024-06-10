@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Подробности недвижимости{% endblock %}
+
+{% block content %}
+  <div>
+    <h2>{{ property.title }}</h2>
+    <img src="{{ property.image.url }}" alt="{{ property.title }}" height="200" width="200">
+    <p>{{ property.description }}</p>
+    <p>Цена: {{ property.price }}</p>
+    
+    {% if user.is_authenticated and not user.is_superuser and not user.is_staff %}
+      <form method="post" action="{% url 'purchase_property' property_id=property.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Купить">
+      </form>
+    {% endif %}
+    
+    {% if user.is_superuser %}
+      <a href="{% url 'edit_property' property_id=property.id %}">Изменить</a>
+      <a href="{% url 'delete_property' property_id=property.id %}">Удалить</a>
+    {% endif %}
+  </div>
+{% endblock %}

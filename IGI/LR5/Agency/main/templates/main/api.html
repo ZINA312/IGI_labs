@@ -1,0 +1,20 @@
+
+{% extends 'main/layout.html' %}
+
+
+{% block content %}
+    <h1>API Page</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Введите имя(латиницей)" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if name %}
+        <h2>Results for "{{ name }}":</h2>
+        <p>Gender: {{ gender }}</p>
+        <p>Probability: {{ probability }}</p>
+        <p>Country: {{ country }}</p>
+        <p>Probability for Country: {{ probability_country }}</p>
+    {% endif %}
+{% endblock %}

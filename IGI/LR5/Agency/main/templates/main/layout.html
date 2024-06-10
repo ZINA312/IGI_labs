@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Агентство недвижимости</title>
+    <style>
+        header {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav li a:hover {
+            background-color: #ddd;
+        }
+
+        nav .right-buttons {
+            float: right;
+        }
+
+        nav .right-buttons li {
+            display: inline-block;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/news/">Новости</a></li>
+                <li><a href="/vacancies/">Вакансии</a></li>
+                <li><a href="/about/">О нас</a></li>
+                <li><a href="/reviews/">Отзывы</a></li>
+                <li><a href="/contacts/">Сотрудники</a></li>
+                <li><a href="/coupons/">Купоны</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="/api/">API</a></li> 
+                    <li class="right-buttons"><a href="/account/">Аккаунт</a></li>
+                    <li class="right-buttons"><a href="/logout/">Выход</a></li>
+                {% else %}
+                    <li class="right-buttons"><a href="/login/">Логин</a></li>
+                    <li class="right-buttons"><a href="/register/">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
