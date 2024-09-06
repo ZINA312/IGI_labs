@@ -1,0 +1,107 @@
+2024-06-10 08:19:12,817 INFO Rendering news page
+2024-06-10 08:19:14,465 INFO Rendering index page
+2024-06-10 08:24:43,832 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\Agency\urls.py changed, reloading.
+2024-06-10 08:27:01,022 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\main\views.py changed, reloading.
+2024-06-10 08:27:12,463 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\main\views.py changed, reloading.
+2024-06-10 08:27:20,787 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\main\views.py changed, reloading.
+2024-06-10 08:28:34,797 INFO Rendering index page
+2024-06-10 08:29:00,596 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\Agency\urls.py changed, reloading.
+2024-06-10 08:29:10,538 INFO Rendering index page
+2024-06-10 08:29:29,577 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\Agency\urls.py changed, reloading.
+2024-06-10 08:29:31,229 ERROR Internal Server Error: /apis/
+Traceback (most recent call last):
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\main\views.py", line 375, in api_page
+    return render(request, 'api.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: api.html
+2024-06-10 08:29:33,515 ERROR Internal Server Error: /apis/
+Traceback (most recent call last):
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\main\views.py", line 375, in api_page
+    return render(request, 'api.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: api.html
+2024-06-10 08:29:45,274 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\Agency\urls.py changed, reloading.
+2024-06-10 08:29:57,645 WARNING Not Found: /apis/
+2024-06-10 08:30:07,559 WARNING Not Found: /apis/
+2024-06-10 08:30:29,689 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\main\views.py changed, reloading.
+2024-06-10 08:30:31,119 INFO Rendering index page
+2024-06-10 08:30:49,100 INFO Rendering coupons page
+2024-06-10 08:30:49,915 INFO Rendering contacts page
+2024-06-10 08:30:50,620 INFO Rendering news page
+2024-06-10 08:30:50,958 INFO Rendering index page
+2024-06-10 08:57:09,115 INFO Rendering about page
+2024-06-10 08:57:09,130 INFO Rendering contacts detail page
+2024-06-10 08:57:09,131 WARNING Not Found: /contacts/1/
+2024-06-10 08:57:09,131 INFO Rendering coupons page
+2024-06-10 08:57:09,133 INFO Rendering index page
+2024-06-10 08:57:09,135 INFO Rendering news page
+2024-06-10 08:57:09,137 INFO Rendering reviews page
+2024-06-10 08:57:09,139 INFO Rendering vacancies page
+2024-06-10 08:57:45,119 INFO Rendering about page
+2024-06-10 08:57:45,134 INFO Rendering contacts detail page
+2024-06-10 08:57:45,134 WARNING Not Found: /contacts/2/
+2024-06-10 08:57:45,135 INFO Rendering coupons page
+2024-06-10 08:57:45,136 INFO Rendering index page
+2024-06-10 08:57:45,139 INFO Rendering news page
+2024-06-10 08:57:45,141 INFO Rendering reviews page
+2024-06-10 08:57:45,143 INFO Rendering vacancies page
+2024-06-10 08:58:04,866 INFO Rendering about page
+2024-06-10 08:58:04,880 INFO Rendering coupons page
+2024-06-10 08:58:04,882 INFO Rendering index page
+2024-06-10 08:58:04,883 INFO Rendering news page
+2024-06-10 08:58:04,885 INFO Rendering reviews page
+2024-06-10 08:58:04,887 INFO Rendering vacancies page
+2024-06-10 08:58:45,428 INFO Rendering about page
+2024-06-10 08:58:45,434 INFO Rendering coupons page
+2024-06-10 08:58:45,437 INFO Rendering index page
+2024-06-10 08:58:45,438 INFO Rendering news page
+2024-06-10 08:58:45,439 INFO Rendering reviews page
+2024-06-10 08:58:45,441 INFO Rendering vacancies page
+2024-06-10 09:03:56,803 INFO D:\codes\Course 2\IGI\253503_Kudosh_13\IGI\LR5\Agency\main\views.py changed, reloading.
+2024-06-10 09:05:59,262 INFO account page
+2024-06-10 09:05:59,270 INFO Rendering index page
+2024-06-10 09:06:03,771 INFO Rendering coupons page
+2024-06-10 09:06:04,760 INFO account page
+2024-06-10 09:06:04,764 INFO Rendering index page
+2024-06-10 09:06:08,424 INFO Rendering news page
+2024-06-10 09:06:09,052 INFO Rendering index page
+2024-06-10 09:06:09,861 INFO Rendering vacancies page
+2024-06-10 09:06:10,455 INFO Rendering about page
+2024-06-10 09:06:11,017 INFO Rendering reviews page
+2024-06-10 09:06:11,509 INFO Rendering contacts page
+2024-06-10 09:06:12,311 INFO account page
+2024-06-10 09:06:12,316 INFO Rendering index page

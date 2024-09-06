@@ -1,0 +1,18 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Список купонов{% endblock %}
+
+{% block content %}
+  <h2>Список купонов</h2>
+  {% if coupons %}
+    <ul>
+      {% for coupon in coupons %}
+        <li style="color: {% if coupon.is_active %}green{% else %}red{% endif %}">
+          {{ coupon.code }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Нет доступных купонов.</p>
+  {% endif %}
+{% endblock %}
