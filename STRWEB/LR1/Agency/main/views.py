@@ -18,13 +18,14 @@ from Agency.forms import *
 import requests
 import numpy as np
 
-logging.basicConfig(level=logging.INFO, filename="D:\codes\Course 2\IGI\\253503_Kudosh_13\IGI\LR5\Agency\main\py_log.log", filemode="a+", format="%(asctime)s %(levelname)s %(message)s")
+logging.basicConfig(level=logging.INFO, filename="D:\codes\Course 2\IGI\\253503_Kudosh_13\STRWEB\LR1\Agency\main\py_log.log", filemode="a+", format="%(asctime)s %(levelname)s %(message)s")
 
 def index(request):
     logging.info('Rendering index page')
     properties = Property.objects.all()
     categories = Category.objects.all()
-
+    latest_article = Article.objects.last() 
+    partners = PartnerCompany.objects.all()
     sort_price = request.GET.get('sort_price')
     if sort_price == 'asc':
         properties = properties.order_by('price')
@@ -35,11 +36,14 @@ def index(request):
     if sort_category:
         properties = properties.filter(category__name=sort_category)
 
+    
     context = {
         'properties': properties,
         'categories': categories,
         'sort_price': sort_price,
         'sort_category': sort_category,
+        'latest_article': latest_article,
+        'partners' : partners,
     }
     return render(request, 'main/index.html', context)
 
@@ -59,12 +63,18 @@ def add_property(request):
 
 def about(request):
     logging.info('Rendering about page')
-    return render(request, 'main/about.html')
+    company = CompanyInfo.objects.first()  
+    return render(request, 'main/about.html', {'company': company})
 
 def news(request):
     logging.info('Rendering news page')
     articles = Article.objects.all()
     return render(request, 'main/news.html', {'articles': articles})
+
+def article_detail_view(request, id):
+    print('asddas')
+    article = get_object_or_404(Article, id=id)  
+    return render(request, 'main/article_detail.html', {'article': article})
 
 def faq(request):
     logging.info('Rendering faq page')
@@ -130,7 +140,9 @@ def privatepolicy(request):
 
 def vacancies(request):
     logging.info('Rendering vacancies page')
-    return render(request, 'main/vacancies.html')
+    vacancies = Vacancy.objects.all()
+    context = {'vacancies': vacancies}
+    return render(request, 'main/vacancies.html', context)
 
 def reviews(request):
     logging.info('Rendering reviews page')
@@ -158,6 +170,33 @@ def property_detail(request, property_id):
     property = get_object_or_404(Property, id=property_id)
     context = {'property': property}
     return render(request, 'main/property_detail.html', context)
+
+def cart_view(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    return render(request, 'main/cart.html', {'cart': cart})
+
+def add_to_cart(request, property_id):
+    if request.method == 'POST':
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        property = get_object_or_404(Property, id=property_id)
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, property=property)
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
+        return redirect('cart_view')
+
+def update_cart_item(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+    if request.method == 'POST':
+        quantity = int(request.POST.get('quantity', 1))
+        cart_item.quantity = quantity
+        cart_item.save()
+    return redirect('cart_view')
+
+def remove_from_cart(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+    cart_item.delete()
+    return redirect('cart_view')
 
 @login_required
 def purchase_property(request, property_id):
@@ -374,3 +413,14 @@ def api_page(request):
                 return render(request, 'main/api.html', context)
 
     return render(request, 'main/api.html')
+
+def checkout_view(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    total_price = sum(item.property.price * item.quantity for item in cart.items.all())
+    return render(request, 'checkout.html', {'cart': cart, 'total_price': total_price})
+
+def process_payment(request):
+    if request.method == 'POST':
+        cart = Cart.objects.get(user=request.user)
+        cart.items.all().delete()  
+        return redirect('success_page') 

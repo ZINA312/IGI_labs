@@ -32,12 +32,12 @@ class Sale(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    description = models.CharField(max_length=255) 
+    content = models.TextField()  
     image = models.ImageField(upload_to='articles/')
 
     def __str__(self):
         return self.title
-
 class FAQ(models.Model):
     question = models.CharField(max_length=200)
     answer = models.TextField()
@@ -71,12 +71,14 @@ class Review(models.Model):
         return f"{self.user.username} - {self.date}"
 
 class Coupon(models.Model):
-    code = models.CharField(max_length=50)
+    code = models.CharField(max_length=50, unique=True)
     is_active = models.BooleanField(default=True)
+    discount = models.DecimalField(max_digits=5, decimal_places=2, default=0.00) 
+    expiration_date = models.DateField(null=True, blank=True)  
 
     def __str__(self):
         return self.code
-    
+
 class MyUser(models.Model):
     user = models.OneToOneField(User, blank=False, default=None, on_delete=models.CASCADE, related_name='profile', null=True)
     phone_number = models.CharField(max_length=13, blank=False, default=None)
@@ -85,3 +87,38 @@ class MyUser(models.Model):
 
     def __str__(self):
         return self.user.get_username
+    
+class PartnerCompany(models.Model):
+    name = models.CharField(max_length=255)
+    website = models.URLField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='partners/', default=None)
+
+    def __str__(self):
+        return self.name
+    
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Корзина пользователя {self.user.username}"
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.property.title}"
+    
+class CompanyInfo(models.Model):
+    name = models.CharField(max_length=200)
+    logo = models.ImageField(upload_to='logo/')
+    video_url = models.URLField(blank=True, null=True)
+    history = models.TextField()
+    details = models.TextField()
+    certificate = models.ImageField()
+
+    def __str__(self):
+        return self.name

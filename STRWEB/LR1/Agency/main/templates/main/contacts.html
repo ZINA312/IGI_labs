@@ -4,16 +4,79 @@
 
 {% block content %}
     <h2>Список контактов</h2>
+    
     {% if request.user.is_superuser %}
         <a href="{% url 'add_contact' %}" class="btn btn-primary">Добавить контакт</a>
-        <br>
-        <br>
-        <br>
+        <br><br><br>
     {% endif %}
-    {% for contact in contacts %}
-        <a href="{% url 'contact_detail' contact.id %}">{{ contact.name }}</a>
-        <br>
-    {% endfor %}
     
-    
+    <div class="contact-list">
+        {% for contact in contacts %}
+            <div class="contact-item">
+                <img src="{{ contact.photo.url }}" alt="{{ contact.name }}" class="contact-photo">
+                <h3>{{ contact.name }}</h3>
+                <p><strong></strong> {{ contact.description }}</p>
+                <p><strong>Телефон:</strong> <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></p>
+                <p><strong>Электронная почта:</strong> <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+                <br>
+            </div>
+        {% empty %}
+            <p>Нет доступных контактов.</p>
+        {% endfor %}
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contact-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 15px;
+            width: calc(33% - 30px); /* Три контакта в ряд */
+            box-sizing: border-box;
+        }
+
+        .contact-photo {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin: 0 0 10px;
+        }
+
+        p {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
 {% endblock %}

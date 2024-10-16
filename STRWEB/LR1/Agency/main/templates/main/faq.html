@@ -3,8 +3,56 @@
 {% block title %}ЧАВО{% endblock %}
 
 {% block content %}
-{% for faq in faqs %}
-    <h2>{{ faq.question }}</h2>
-    <p>{{ faq.answer }}</p>
-{% endfor %}
+    <h1>Часто задаваемые вопросы</h1>
+    {% for faq in faqs %}
+        <div class="faq-item">
+            <details>
+                <summary>{{ faq.question }}</summary>
+                <p class="faq-answer">{{ faq.answer }}</p>
+            </details>
+        </div>
+    {% empty %}
+        <p>Нет доступных вопросов.</p>
+    {% endfor %}
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+            padding: 15px;
+        }
+
+        summary {
+            font-size: 1.2em;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        .faq-date {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 10px;
+        }
+    </style>
 {% endblock %}

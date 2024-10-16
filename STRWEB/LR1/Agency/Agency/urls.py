@@ -19,12 +19,16 @@ from django.urls import path,  re_path, include
 from django.conf import settings
 from main import views
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', views.index, name='home'),
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^api/', views.api_page),
+    path('news/<int:id>/', views.article_detail_view, name='article_detail'),
     re_path(r'^news/', views.news, name='news'),
+    re_path(r'^private-policy/', views.privatepolicy, name='news'),
+    re_path(r'^faq/', views.faq),
     re_path(r'^vacancies/', views.vacancies, name='vacancies'),
     re_path(r'^about/', views.about, name='about'),
     re_path(r'^coupons/', views.coupons, name='coupons'),
@@ -44,5 +48,14 @@ urlpatterns = [
     re_path(r'^logout/', views.logout_view, name='logout'),
     path('property/<int:property_id>/', views.property_detail, name='property_detail'),
     path('purchase/<int:property_id>/', views.purchase_property, name='purchase_property'),
+    path('add_to_cart/<int:property_id>/', views.add_to_cart, name='add_to_cart'),
+    path('cart/', views.cart_view, name='cart_view'),
+    path('add_to_cart/<int:property_id>/', views.add_to_cart, name='add_to_cart'),
+    path('update_cart_item/<int:item_id>/', views.update_cart_item, name='update_cart_item'),
+    path('remove_from_cart/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('checkout/', views.checkout_view, name='checkout'),
+    path('process_payment/', views.process_payment, name='process_payment'),
+    path('success/', TemplateView.as_view(template_name='main/success.html'), name='success_page'),
+    path('poligon/', TemplateView.as_view(template_name='main/poligon.html'), name='poligon_page'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

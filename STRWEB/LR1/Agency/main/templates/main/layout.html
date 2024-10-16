@@ -1,14 +1,19 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
+    <link rel="icon" href="{% static 'logo/1.png' %}" type="image/x-icon">
     <title>Агентство недвижимости</title>
     <style>
         header {
             background-color: #f2f2f2;
-            padding: 10px;
+            padding: 0;
         }
 
         nav ul {
+            display: flex;              /* Используем flexbox */
+            align-items: center;       /* Центрируем по вертикали */
+            justify-content: space-between; /* Распределяем пространство между элементами */
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -16,7 +21,7 @@
         }
 
         nav li {
-            float: left;
+            margin: 0 10px;           /* Добавляем отступы между элементами */
         }
 
         nav li a {
@@ -25,19 +30,26 @@
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
         }
 
-        nav li a:hover {
+        nav .hover-enabled:hover{
             background-color: #ddd;
         }
 
         nav .right-buttons {
-            float: right;
+            margin-left: auto;      
         }
 
         nav .right-buttons li {
             display: inline-block;
-            margin-left: 10px;
+            
+        }
+
+        nav li img {
+            pointer-events: none; 
         }
     </style>
 </head>
@@ -45,20 +57,30 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/news/">Новости</a></li>
-                <li><a href="/vacancies/">Вакансии</a></li>
-                <li><a href="/about/">О нас</a></li>
-                <li><a href="/reviews/">Отзывы</a></li>
-                <li><a href="/contacts/">Сотрудники</a></li>
-                <li><a href="/coupons/">Купоны</a></li>
+                <li><a href="/"><img src="{% static 'logo/1.png' %}" width="100" height="50"></a></li>
+                <li><a href="/" class="hover-enabled">Главная</a></li>
+                <li><a href="/news/" class="hover-enabled">Новости</a></li>
+                <li><a href="/faq/" class="hover-enabled">FAQ</a></li>
+                <li><a href="/vacancies/" class="hover-enabled">Вакансии</a></li>
+                <li><a href="/about/" class="hover-enabled">О нас</a></li>
+                <li><a href="/reviews/" class="hover-enabled">Отзывы</a></li>
+                <li><a href="/contacts/" class="hover-enabled">Сотрудники</a></li>
+                <li><a href="/coupons/" class="hover-enabled">Купоны</a></li>
+                <li><a href="/private-policy/" class="hover-enabled">Полит.Конф.</a></li>
+                <li><a href="/poligon/" class="hover-enabled">Полигон</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="/api/">API</a></li> 
-                    <li class="right-buttons"><a href="/account/">Аккаунт</a></li>
-                    <li class="right-buttons"><a href="/logout/">Выход</a></li>
+                    <div class="right-buttons">
+                        <li><a href="{% url 'cart_view' %}" class="hover-enabled">Корзина</a></li>
+                        <li ><a href="/account/" class="hover-enabled">Аккаунт</a></li>
+                        <li ><a href="/logout/" class="hover-enabled">Выход</a></li>
+                    </div>
+                    
                 {% else %}
-                    <li class="right-buttons"><a href="/login/">Логин</a></li>
-                    <li class="right-buttons"><a href="/register/">Регистрация</a></li>
+                <div class="right-buttons">
+                    <li ><a href="/login/" class="hover-enabled">Логин</a></li>
+                    <li ><a href="/register/" class="hover-enabled">Регистрация</a></li>
+                </div>
+                    
                 {% endif %}
             </ul>
         </nav>
