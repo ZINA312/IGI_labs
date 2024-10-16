@@ -1,0 +1,25 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}О компании{% endblock %}
+
+{% block content %}
+    <div style="max-width: 800px; margin: auto; padding: 20px;">
+        <h1>{{ company.name }}</h1>
+        <img src="{{ company.logo.url }}" alt="{{ company.name }} логотип" style="width: 50%; height: auto;">
+
+        {% if company.video_url %}
+            <h2>Видео</h2>
+            <iframe width="100%" height="315" src="{{ company.video_url }}" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
+
+        <h2>История компании</h2>
+        <p>{{ company.history }}</p>
+
+        <h2>Реквизиты</h2>
+        <p>{{ company.details }}</p>
+
+        <h2>Сертификат</h2>
+        <img src="{{ company.certificate.url }}" alt="{{ company.name }} сертификат" style="width: 100%; height: auto;">
+    </div>
+{% endblock %}

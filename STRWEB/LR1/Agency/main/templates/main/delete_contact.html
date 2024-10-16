@@ -1,0 +1,12 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Удалить контакт{% endblock %}
+
+{% block content %}
+  <h2>Удалить контакт</h2>
+  <p>Вы действительно хотите удалить "{{ contact.name }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+  </form>
+{% endblock %}

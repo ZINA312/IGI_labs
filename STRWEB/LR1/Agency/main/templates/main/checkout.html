@@ -1,0 +1,40 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Оплата{% endblock %}
+
+{% block content %}
+    <div style="max-width: 800px; margin: auto; padding: 20px;">
+        <h1 style="font-family: Arial, Helvetica, sans-serif; color: #333;">Оплата товаров</h1>
+        
+        {% if cart.items.count > 0 %}
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Товар</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Количество</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart.items.all %}
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">{{ item.property.title }}</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">{{ item.quantity }}</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">{{ item.property.price }} руб.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div style="margin-top: 20px;">
+                <h3 style="font-family: Arial, Helvetica, sans-serif;">Итого: {{ total_price }} руб.</h3>
+                <form method="POST" action="{% url 'process_payment' %}">
+                    {% csrf_token %}
+                    <button type="submit" style="padding: 10px; background-color: #28a745; color: white; border-radius: 5px;">Оплатить</button>
+                </form>
+            </div>
+        {% else %}
+            <p style="font-family: Arial, Helvetica, sans-serif;">Ваша корзина пуста.</p>
+        {% endif %}
+    </div>
+{% endblock %}
