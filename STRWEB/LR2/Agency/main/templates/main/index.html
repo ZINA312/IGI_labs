@@ -1,0 +1,158 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="Агентство недвижимости, предлагающее лучшие предложения по продаже и аренде недвижимости. Мы поможем вам найти идеальный дом или квартиру.">
+    <meta name="keywords" content="недвижимость, купить квартиру, продать дом, аренда, агентство недвижимости">
+    <meta name="author" content="Harmony">
+{% endblock %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <h2>Добавить недвижимость</h2>
+        <form method="POST" action="{% url 'add_property' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ property_form.as_p }}
+            <button type="submit">Добавить</button>
+        </form>
+    {% endif %}
+    <main>
+        <div style="display: flex; justify-content: space-between;">
+            <div style="flex: 1; margin-right: 20px;">
+                <br>
+                <img src="{% static 'ad_banners/main_page_banner.png' %}" style="display:block; margin-left: auto; margin-right: auto; width: 50%">
+                <br>
+    
+                <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <form method="get" action="" style="display: flex; gap: 30px;">
+                        <div style="display: flex; align-items: center;">
+                            <label for="sort_price">По цене:</label>
+                            <select name="sort_price" id="sort_price" class="sort-select">
+                                <option value="">Без сортировки</option>
+                                <option value="asc" {% if sort_price == 'asc' %}selected{% endif %}>По возрастанию</option>
+                                <option value="desc" {% if sort_price == 'desc' %}selected{% endif %}>По убыванию</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <label for="sort_category">По категории:</label>
+                            <select name="sort_category" id="sort_category" class="sort-select">
+                                <option value="">Без сортировки</option>
+                                {% for category in categories %}
+                                <option value="{{ category.name }}" {% if sort_category == category.name %}selected{% endif %}>{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit">Применить</button>
+                    </form>
+                </div>
+    
+                <div class="property-grid">
+                    {% for property in properties %}
+                    <div class="property-card" itemscope itemtype="http://schema.org/RealEstateListing">
+                        <img src="{{ property.image.url }}" alt="{{ property.title }}" itemprop="image">
+                        <div class="property-info">
+                            <h3 itemprop="name">{{ property.title }}</h3>
+                            <p itemprop="description">{{ property.description }}</p>
+                            <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <span itemprop="price" content="{{ property.price }}">{{ property.price }}</span>
+                                <span itemprop="priceCurrency" content="RUB">руб.</span>
+                            </p>
+                            <br>
+                            <a href="{% url 'property_detail' property.id %}">Подробнее</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>Нет доступных недвижимостей.</p>
+                    {% endfor %}
+                </div>
+            </div>
+    
+            <div class="latest-article">
+                <h3>Последняя новость</h3>
+                {% if latest_article %}
+                    <div style="margin-bottom: 15px;">
+                        <img src="{{ latest_article.image.url }}" alt="Изображение новости" style="width: 100%; border-radius: 8px; height: auto;">
+                        <h4 style="color: #3498db;">{{ latest_article.title }}</h4>
+                        <p>{{ latest_article.content|truncatewords:30 }}</p>
+                    </div>
+                {% else %}
+                    <p>Нет новостей.</p>
+                {% endif %}
+                <hr>
+                <img src="{% static 'ad_banners/main_page_banner2.jpg' %}" style="display:block; margin-left: auto; margin-right: auto; width:90%">
+            </div>
+        </div>
+    
+        <div style="margin-top: 30px;">
+            <h2>Компании-партнеры</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                {% for partner in partners %}
+                <div class="partner-card">
+                    <img src="{{ partner.image.url }}" alt="{{ partner.name }}">
+                    <div style="flex: 1;">
+                        <h4 style="color: #3498db;">{{ partner.name }}</h4>
+                        <p>{{ partner.description }}</p>
+                        <a href="{{ partner.website }}" target="_blank">Перейти на сайт</a>
+                    </div>
+                </div>
+                {% empty %}
+                <p>Нет партнеров.</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <br>
+        <div class="scene">
+            <div class="house">
+                <div class="roof"></div>
+                <div class="window window1"></div>
+                
+                <div class="window window3"></div>
+                <div class="back-door"></div>
+                <div class="door"></div>
+                <div class="door hand"></div>
+                
+            </div>
+            
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+            <div class="cloud cloud4"></div>
+            <div class="cloud cloud5"></div>
+            <div class="cloud cloud6"></div>
+            <div class="cloud cloud7"></div>
+            <div class="cloud cloud8"></div>
+            <div class="cloud cloud9"></div>
+            <div class="cloud cloud10"></div>
+            <div class="cloud cloud11"></div>
+            <div class="cloud cloud12"></div>
+            <div class="tree tree1">
+                <div class="tree-leaves"></div>
+            </div>
+            <div class="tree tree2">
+                <div class="tree-leaves"></div>
+            </div>
+            <div class="tree tree3">
+                <div class="tree-leaves"></div>
+            </div>
+            <div class="tree tree4">
+                <div class="tree-leaves"></div>
+            </div>
+            <div class="tree tree5">
+                <div class="tree-leaves"></div>
+            </div>
+            <div class="tree tree6">
+                <div class="tree-leaves"></div>
+            </div>
+            <div class="slogan">Ваш дом — ваше счастье!</div>
+        </div>
+    </main>
+    
+{% endblock %}

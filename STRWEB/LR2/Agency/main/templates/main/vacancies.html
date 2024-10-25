@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Вакансии{% endblock %}
+
+{% block content %}
+    <h1>Вакансии</h1>
+
+    <div class="vacancy-list">
+        {% if vacancies %}
+            {% for vacancy in vacancies %}
+                <div class="vacancy-item">
+                    <h2>{{ vacancy.title }}</h2>
+                    <p><strong>Описание:</strong> {{ vacancy.description }}</p>
+                </div>
+                <hr>
+            {% endfor %}
+        {% else %}
+            <p>Нет доступных вакансий.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}ЧАВО{% endblock %}
+
+{% block content %}
+    <h1>Часто задаваемые вопросы</h1>
+    {% for faq in faqs %}
+        <div class="faq-item">
+            <details>
+                <summary>{{ faq.question }}</summary>
+                <p class="faq-answer">{{ faq.answer }}</p>
+            </details>
+        </div>
+    {% empty %}
+        <p>Нет доступных вопросов.</p>
+    {% endfor %}
+{% endblock %}

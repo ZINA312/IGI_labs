@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример статьи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+       
+        .first-letter::first-letter {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ff6347; 
+        }
+
+       
+        .context::before {
+            content: "Начало: ";
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .context::after {
+            content: " :Конец";
+            font-weight: bold;
+            color: #007bff;
+        }
+
+
+        .unicode-list {
+            list-style-type: none; 
+            padding: 0;
+        }
+
+        .unicode-list li {
+            position: relative;
+            padding-left: 1.5em; 
+        }
+
+        .unicode-list li::before {
+            content: "✔️"; 
+            position: absolute;
+            left: 0; 
+            color: #28a745;
+        }
+
+       
+        ::selection {
+            background-color: #ffeb3b;
+            color: #000; 
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Пример статьи</h1>
+
+    <p class="first-letter context">Это пример абзаца текста, который демонстрирует использование псевдоэлементов в CSS. Он показывает, как можно выделить первую букву, добавить контекст и изменить стиль при выделении текста.</p>
+
+    <h2>Список с маркерами</h2>
+    <ul class="unicode-list">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ul>
+
+</body>
+</html>

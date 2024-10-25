@@ -1,0 +1,38 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Список купонов{% endblock %}
+
+{% block content %}
+    <h2 class="coupons-title">Список купонов</h2>
+    
+    {% if coupons %}
+        <h3 class="active-coupons-title">Действующие купоны</h3>
+        <ul class="coupons-list">
+            {% for coupon in coupons %}
+                {% if coupon.is_active %}
+                    <li class="coupon-item active">
+                        <strong>Код:</strong> {{ coupon.code }} 
+                        <em>(Скидка: {{ coupon.discount }}%)</em>
+                        <span> - Действует до: {{ coupon.expiration_date|date:"d.m.Y" }}</span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        
+        <h3 class="archived-coupons-title">Архивные купоны</h3>
+        <ul class="coupons-list">
+            {% for coupon in coupons %}
+                {% if not coupon.is_active %}
+                    <li class="coupon-item archived">
+                        <strong>Код:</strong> {{ coupon.code }} 
+                        <em>(Скидка: {{ coupon.discount }}%)</em>
+                        <span> - Истек: {{ coupon.expiration_date|date:"d.m.Y" }}</span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        
+    {% else %}
+        <p class="no-coupons-message">Нет доступных купонов.</p>
+    {% endif %}
+{% endblock %}

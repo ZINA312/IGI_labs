@@ -1,0 +1,10 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <img src="{{ article.image.url }}" alt="Изображение статьи" class="article-detail-img">
+    <p class="article-detail-description">{{ article.description }}</p>
+    <a href="{% url 'news' %}" class="back-button">Назад к новостям</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+    <h1>Новости</h1>
+    <div class="articles-container">
+        {% for article in articles %}
+            <div class="article">
+                <h2>{{ article.title }}</h2>
+                <img src="{{ article.image.url }}" alt="Изображение статьи">
+                <p>{{ article.content }}</p>
+                <br>
+                <a href="{% url 'article_detail' article.id %}">Читать далее</a>
+            </div>
+            
+        {% empty %}
+            <p>Нет доступных новостей.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
