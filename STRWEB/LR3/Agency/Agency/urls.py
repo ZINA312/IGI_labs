@@ -21,10 +21,11 @@ from main import views
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
+
 urlpatterns = [
     path('', views.index, name='home'),
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^api/', views.api_page),
+    # re_path(r'^api/', views.api_page),
     path('news/<int:id>/', views.article_detail_view, name='article_detail'),
     re_path(r'^news/', views.news, name='news'),
     re_path(r'^private-policy/', views.privatepolicy, name='private_policy'),
@@ -57,5 +58,7 @@ urlpatterns = [
     path('process_payment/', views.process_payment, name='process_payment'),
     path('success/', TemplateView.as_view(template_name='main/success.html'), name='success_page'),
     path('poligon/', TemplateView.as_view(template_name='main/poligon.html'), name='poligon_page'),
+    path('contactstable/', TemplateView.as_view(template_name='main/contacts_table.html'), name='contacts_table_page'),
+    path('api/contacts/', views.ContactList.as_view(), name='contact-list'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,4 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Article
-from django.shortcuts import render
 from django.template.response import TemplateResponse
 from .models import *
 from django.contrib.auth.models import User
@@ -17,15 +14,22 @@ from django.contrib.auth import authenticate, login, logout
 from Agency.forms import *
 import requests
 import numpy as np
+from rest_framework import generics
+from .serializers import ContactSerializer
+from rest_framework.permissions import AllowAny
+from django.core.paginator import Paginator
 
-logging.basicConfig(level=logging.INFO, filename="D:\codes\Course 2\IGI\\253503_Kudosh_13\STRWEB\LR2\Agency\main\py_log.log", filemode="a+", format="%(asctime)s %(levelname)s %(message)s")
+logging.basicConfig(level=logging.INFO, filename="D:\codes\Course 2\IGI\\253503_Kudosh_13\STRWEB\LR3\Agency\main\py_log.log", filemode="a+", format="%(asctime)s %(levelname)s %(message)s")
 
 def index(request):
     logging.info('Rendering index page')
-    properties = Property.objects.all()
+    
+    properties = Property.objects.all().order_by('id')  # Explicitly order properties
+    
     categories = Category.objects.all()
     latest_article = Article.objects.last() 
     partners = PartnerCompany.objects.all()
+    
     sort_price = request.GET.get('sort_price')
     if sort_price == 'asc':
         properties = properties.order_by('price')
@@ -33,17 +37,20 @@ def index(request):
         properties = properties.order_by('-price')
 
     sort_category = request.GET.get('sort_category')
-    if sort_category:
+    if sort_category != "None" and sort_category:
         properties = properties.filter(category__name=sort_category)
-
+        
+    paginator = Paginator(properties, 3)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     
     context = {
-        'properties': properties,
+        'page_obj': page_obj,  
         'categories': categories,
         'sort_price': sort_price,
         'sort_category': sort_category,
         'latest_article': latest_article,
-        'partners' : partners,
+        'partners': partners,
     }
     return render(request, 'main/index.html', context)
 
@@ -386,6 +393,15 @@ def create_property(request):
     
     return render(request, 'properties/create_property.html', {'form': form})
 
+def property_list(request):
+    properties = Property.objects.all()  # Fetch all properties
+    paginator = Paginator(properties, 3)  # Show 3 properties per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'template.html', {'page_obj': page_obj})
+
 @login_required
 def api_page(request):
     if request.method == 'POST':
@@ -424,3 +440,9 @@ def process_payment(request):
         cart = Cart.objects.get(user=request.user)
         cart.items.all().delete()  
         return redirect('success_page') 
+    
+class ContactList(generics.ListAPIView):
+    permission_classes = [AllowAny]
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+    

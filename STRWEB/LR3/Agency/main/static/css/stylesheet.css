@@ -120,7 +120,7 @@ button[type="submit"] {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .property-card img{
@@ -128,8 +128,8 @@ button[type="submit"] {
 }
 
 .property-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .property-info {
@@ -755,13 +755,24 @@ input[type="checkbox"]:not(:checked), input[type="radio"]:not(:checked) {
 }
 
 .loader {
-    display: flex;
+    position: fixed; /* Фиксированное позиционирование */
+    top: 50%; /* Центр по вертикали */
+    left: 50%; /* Центр по горизонтали */
+    transform: translate(-50%, -50%); /* Смещение для точного центрирования */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон */
+    display: flex; /* Центрирование контента */
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center; /* Горизонтальное центрирование */
+    z-index: 1000; /* Поверх всех элементов */
     gap: 10px;
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
     border-radius: 50%;
     animation: pulse 0.4s infinite alternate;
 }
@@ -1004,6 +1015,11 @@ input[type="checkbox"]:not(:checked), input[type="radio"]:not(:checked) {
     }
 }
 
+.main {
+    margin: 0;
+    height: 100vh; /* Высота на весь экран */
+}
+
 .main-title {
     text-align: center;
     text-transform: uppercase;
@@ -1095,4 +1111,86 @@ input[type="checkbox"]:not(:checked), input[type="radio"]:not(:checked) {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+.slider {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    transition: opacity 1s ease-in-out;
+}
+.nav, .pagination {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.nav button, .pagination button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+}
+.pagination {
+    bottom: 10px;
+    justify-content: center;
+}
+.pagination button {
+    margin: 0 5px;
+}
+.caption {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#scrolling-houses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+    opacity: 0; /* Изначально скрыто */
+    transition: opacity 1s ease-in-out; /* Плавный переход */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.house-img {
+    width: 100%;
+    height: 100%;
+    animation: move-house 2s ease-in-out infinite alternate;
+}
+
+@keyframes move-house {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-20px);
+    }
 }

@@ -25,7 +25,33 @@
                 <br>
                 <img src="{% static 'ad_banners/main_page_banner.png' %}" style="display:block; margin-left: auto; margin-right: auto; width: 50%">
                 <br>
-    
+                <div class="slider" id="slider" style="position: relative; max-width: 600px; margin: auto; overflow: hidden; border-radius: 8px;">
+                    <div class="slides" style="display: flex; transition: transform 0.5s ease-in-out;">
+                        <div class="slide"  style="min-width: 100%; position: relative;">
+                            <a href="https://iis.bsuir.by/" style="all: unset; ">
+                                <img src="{% static 'slider/slider1.jpg' %}" alt="Слайд 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                <div class="caption" style="position: absolute; bottom: 10px; left: 10px; color: white; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">Описание слайда 1</div>
+                            </a>    
+                        </div>
+                        <div class="slide" style="min-width: 100%; position: relative;">
+                            <a href="https://lms.bsuir.by/" style="all: unset;">
+                                <img src="{% static 'slider/slider2.jpg' %}" alt="Слайд 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                <div class="caption" style="position: absolute; bottom: 10px; left: 10px; color: white; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">Описание слайда 2</div>
+                            </a>
+                        </div>
+                        <div class="slide" style="min-width: 100%; position: relative;">
+                            <a href="https://iis.bsuir.by/" style="all: unset;">
+                                <img src="{% static 'slider/slider3.jpg' %}" alt="Слайд 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                <div class="caption" style="position: absolute; bottom: 10px; left: 10px; color: white; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">Описание слайда 3</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nav" style="position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between;">
+                        <button id="prev" style="background: none; border: none; cursor: pointer; font-size: 2rem; color: white;">❮</button>
+                        <button id="next" style="background: none; border: none; cursor: pointer; font-size: 2rem; color: white;">❯</button>
+                    </div>
+                    <div class="pagination" id="pagination" style="position: absolute; bottom: 10px; top: 90%; left: 50%; transform: translateX(-50%); display: flex; gap: 5px;"></div>
+                </div>
                 <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                     <form method="get" action="" style="display: flex; gap: 30px;">
                         <div style="display: flex; align-items: center;">
@@ -50,7 +76,7 @@
                 </div>
     
                 <div class="property-grid">
-                    {% for property in properties %}
+                    {% for property in page_obj %}
                     <div class="property-card" itemscope itemtype="http://schema.org/RealEstateListing">
                         <img src="{{ property.image.url }}" alt="{{ property.title }}" itemprop="image">
                         <div class="property-info">
@@ -68,8 +94,27 @@
                     <p>Нет доступных недвижимостей.</p>
                     {% endfor %}
                 </div>
+                
+                <div class="pagination" style="all:unset;">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1&sort_price={{ sort_price }}&sort_category={{ sort_category }}">&laquo; Первая</a>
+                            <a href="?page={{ page_obj.previous_page_number }}&sort_price={{ sort_price }}&sort_category={{ sort_category }}">Предыдущая</a>
+                        {% endif %}
+                        
+                        <span class="current">
+                            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}&sort_price={{ sort_price }}&sort_category={{ sort_category }}">Следующая</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}&sort_price={{ sort_price }}&sort_category={{ sort_category }}">Последняя &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+                
             </div>
-    
+            
             <div class="latest-article">
                 <h3>Последняя новость</h3>
                 {% if latest_article %}
@@ -103,13 +148,13 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="loader">
+        <!-- <div class="loader">
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
-        </div>
-        <br>
-        <div class="scene">
+        </div> -->
+        <!-- <br> -->
+        <!-- <div class="scene">
             <div class="house">
                 <div class="roof"></div>
                 <div class="window window1"></div>
@@ -152,7 +197,10 @@
                 <div class="tree-leaves"></div>
             </div>
             <div class="slogan">Ваш дом — ваше счастье!</div>
-        </div>
+        </div> -->
+        <div id="scrolling-houses" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;"></div>
     </main>
-    
+    <script src="{% static 'script/slider.js' %}"></script>
+    <script src="{% static 'script/index.js' %}"></script>
+    <script src="{% static 'script/animation.js' %}"></script>
 {% endblock %}

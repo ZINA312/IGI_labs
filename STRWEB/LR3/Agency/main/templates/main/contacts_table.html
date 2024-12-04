@@ -1,0 +1,72 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            cursor: pointer;
+        }
+        .highlight {
+            border: 1px solid red;
+            background-color: #ffe6e6;
+        }
+        .hidden {
+            display: none;
+        }
+        .sort-indicator {
+            font-size: 0.8em;
+            color: gray;
+        }
+    </style>
+<div class="loader" id="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    <h2>Список контактов</h2>
+    
+    <button id="addButton">Добавить</button>
+    <div id="contactForm" class="hidden">
+        <input type="text" id="name" placeholder="ФИО" required>
+        <input type="text" id="photoUrl" placeholder="URL фото" required>
+        <input type="text" id="description" placeholder="Описание" required>
+        <input type="text" id="phone" placeholder="Телефон" required>
+        <input type="email" id="email" placeholder="Электронная почта" required>
+        <button id="submitContact">Добавить в таблицу</button>
+        <div id="validationMessage"></div>
+    </div>
+
+    <input type="text" id="filter" placeholder="Поиск...">
+    <button id="filterBtn">Найти</button>
+
+    <table id="contactsTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">ФИО <span id="sortIndicator0" class="sort-indicator"></span></th>
+                <th onclick="sortTable(1)">Фото</th>
+                <th onclick="sortTable(2)">Описание <span id="sortIndicator2" class="sort-indicator"></span></th>
+                <th onclick="sortTable(3)">Телефон <span id="sortIndicator3" class="sort-indicator"></span></th>
+                <th onclick="sortTable(4)">Электронная почта <span id="sortIndicator4" class="sort-indicator"></span></th>
+                <th>Выбор</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <div id="pagination"></div>
+    <button id="rewardBtn">Премировать</button>
+    <div id="rewardMessage"></div>
+    <div id="detailsBlock" class="hidden"></div>
+    
+    <script src="{% static 'script/contacts.js' %}"></script>
+{% endblock %}
