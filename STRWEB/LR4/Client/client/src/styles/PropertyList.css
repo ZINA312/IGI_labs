@@ -1,0 +1,45 @@
+.property-list {
+    list-style: none;
+    padding: 0;
+}
+
+.property-item {
+    margin-bottom: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.property-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.property-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.property-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.property-price {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.property-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.property-link:hover {
+    text-decoration: underline;
+}
